@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Plano extends Model {
     /**
@@ -10,15 +8,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Plano.hasMany(models.Aluno, {
+        foreignKey: 'plano_id',
+      });
     }
   }
-  Plano.init({
-    tipo_plano: DataTypes.STRING,
-    preco: DataTypes.FLOAT
-  }, {
-    sequelize,
-    modelName: 'Plano',
-  });
+  Plano.init(
+    {
+      tipo_plano: DataTypes.STRING,
+      preco: DataTypes.FLOAT,
+    },
+    {
+      sequelize,
+      modelName: 'Plano',
+    }
+  );
   return Plano;
 };

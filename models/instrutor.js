@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Instrutor extends Model {
     /**
@@ -10,16 +8,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Instrutor.hasMany(models.Treino, {
+        foreignKey: 'instrutor_id',
+      });
     }
   }
-  Instrutor.init({
-    nome: DataTypes.STRING,
-    idade: DataTypes.INTEGER,
-    cref: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Instrutor',
-  });
+  Instrutor.init(
+    {
+      nome: DataTypes.STRING,
+      idade: DataTypes.INTEGER,
+      cref: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'Instrutor',
+    }
+  );
   return Instrutor;
 };
