@@ -32,3 +32,5 @@ module.exports = {
     await queryInterface.dropTable('instrutores');
   },
 };
+
+module.exports = Services;
